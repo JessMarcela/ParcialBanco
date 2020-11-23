@@ -25,6 +25,7 @@ public class Formulario extends javax.swing.JFrame {
      */
     public Formulario() {
         initComponents();
+         setLocationRelativeTo(null);
     }
 
     /**
@@ -56,6 +57,9 @@ public class Formulario extends javax.swing.JFrame {
         cuentaAhorrosOpcion = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        respuestaCuentas = new javax.swing.JTextArea();
+        jLabel7 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         registrarse = new javax.swing.JToggleButton();
         accederalSistema = new javax.swing.JToggleButton();
@@ -201,34 +205,44 @@ public class Formulario extends javax.swing.JFrame {
 
         jLabel6.setText("Escoja qué acción desea hacer");
 
+        respuestaCuentas.setEditable(false);
+        respuestaCuentas.setColumns(20);
+        respuestaCuentas.setRows(5);
+        jScrollPane2.setViewportView(respuestaCuentas);
+
+        jLabel7.setText("Respuesta:");
+
         javax.swing.GroupLayout OpcionesUsuarioLayout = new javax.swing.GroupLayout(OpcionesUsuario.getContentPane());
         OpcionesUsuario.getContentPane().setLayout(OpcionesUsuarioLayout);
         OpcionesUsuarioLayout.setHorizontalGroup(
             OpcionesUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OpcionesUsuarioLayout.createSequentialGroup()
+            .addGroup(OpcionesUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(OpcionesUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(OpcionesUsuarioLayout.createSequentialGroup()
-                        .addComponent(verSaldo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(retirarCuenta))
-                    .addGroup(OpcionesUsuarioLayout.createSequentialGroup()
+                .addGroup(OpcionesUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OpcionesUsuarioLayout.createSequentialGroup()
                         .addComponent(consignarCuenta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(crearCuenta)))
-                .addGap(48, 48, 48))
-            .addGroup(OpcionesUsuarioLayout.createSequentialGroup()
-                .addGroup(OpcionesUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(crearCuenta)
+                        .addGap(48, 48, 48))
                     .addGroup(OpcionesUsuarioLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(OpcionesUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tarjetaCreditoOpcion)
                             .addComponent(jLabel4)
-                            .addComponent(cuentaAhorrosOpcion)))
-                    .addGroup(OpcionesUsuarioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cuentaAhorrosOpcion)
+                            .addComponent(jLabel6))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OpcionesUsuarioLayout.createSequentialGroup()
+                        .addComponent(verSaldo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(retirarCuenta)
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OpcionesUsuarioLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())))
+            .addGroup(OpcionesUsuarioLayout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(jLabel7)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         OpcionesUsuarioLayout.setVerticalGroup(
             OpcionesUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +263,11 @@ public class Formulario extends javax.swing.JFrame {
                 .addGroup(OpcionesUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(consignarCuenta)
                     .addComponent(crearCuenta))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -341,6 +359,14 @@ public class Formulario extends javax.swing.JFrame {
     private void retirarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retirarCuentaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_retirarCuentaActionPerformed
+
+    public JTextArea getRespuestaCuentas() {
+        return respuestaCuentas;
+    }
+
+    public void setRespuestaCuentas(JTextArea respuestaCuentas) {
+        this.respuestaCuentas = respuestaCuentas;
+    }
     
     public void mostrarResultado(String m) {
         JOptionPane.showMessageDialog(null, m);
@@ -350,6 +376,16 @@ public class Formulario extends javax.swing.JFrame {
         do {
             try {
                 return Integer.parseInt(JOptionPane.showInputDialog(m));
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "El ID tiene que ser numérico");
+            }
+        } while(true);
+    }
+    
+    public long solicitarLong(String m) {
+        do {
+            try {
+                return Long.parseLong(JOptionPane.showInputDialog(m));
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "El ID tiene que ser numérico");
             }
@@ -520,10 +556,13 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton listo;
     private javax.swing.JTextField nombreNuevo;
     private javax.swing.JToggleButton registrarse;
+    private javax.swing.JTextArea respuestaCuentas;
     private javax.swing.JButton retirarCuenta;
     private javax.swing.JRadioButton tarjetaCreditoOpcion;
     private javax.swing.JButton tarjetaCrédito;

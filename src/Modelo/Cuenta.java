@@ -14,7 +14,6 @@ public abstract class Cuenta extends Observable {
     private long saldo;
     
     public void consignar(int saldo){
-        
         this.saldo += saldo;
         setChanged();
         notifyObservers("Consignación de "+saldo+" \nSaldo total: "+this.saldo);
@@ -38,7 +37,4 @@ public abstract class Cuenta extends Observable {
     
     public abstract void retirar(int saldo);
     
-    public int generarContrasena(){
-        return (int)(100000 * Math.random());
-    }
 }

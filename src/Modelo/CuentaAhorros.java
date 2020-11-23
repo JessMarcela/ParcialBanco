@@ -29,4 +29,7 @@ public class CuentaAhorros extends Cuenta {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public int generarContrasena(){
+        return (int)(100000 * Math.random());
+    }
 }

@@ -13,6 +13,7 @@ public class TarjetaCredito extends Cuenta {
  
     private long cupo;
 
+
     public TarjetaCredito() {
     }
 
@@ -23,7 +24,6 @@ public class TarjetaCredito extends Cuenta {
     public void setCupo(long cupo) {
         this.cupo = cupo;
     }
-
     
     @Override
     public void retirar(int saldo) {

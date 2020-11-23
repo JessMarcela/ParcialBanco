@@ -23,16 +23,35 @@ public class Banco {
         this.clientes = clientes;
     }
     
-    public boolean verificarID(int id){
+    public int verificarID(int id){
         
          for(int i=0; i<clientes.size(); i++){
             
            if(clientes.get(i).getId() == id)
-               return true;
+               return i;
             
         }
-        return false;
-        
+        return -1; 
     }
     
+    public int verificarCuentaCredito(int posicion, int numeroC){
+        
+        for(int i=0; i<clientes.get(posicion).getCuentasCredito().size(); i++){
+            
+            if(clientes.get(posicion).getCuentasCredito().get(i).getNumero() == numeroC)
+                return i;
+            
+        }
+        return -1;
+    }
+     public int verificarCuentaAhorro(int posicion, int numeroC){
+        
+        for(int i=0; i<clientes.get(posicion).getCuentasAhorro().size(); i++){
+            
+            if(clientes.get(posicion).getCuentasAhorro().get(i).getNumero() == numeroC)
+                return i;
+            
+        }
+        return -1;
+    }
 }
